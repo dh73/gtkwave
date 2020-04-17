@@ -63,7 +63,7 @@ while(!feof(fi))
 				{
 				if(!endtag)
 					{
-					char *qts[6];
+					char *qts[8];
 					char *s = pnt + 6;
 					int numqt = 0;
 					int tm = 0;
@@ -73,25 +73,25 @@ while(!feof(fi))
 						if(*s == '"')
 							{
 							qts[numqt++] = s;
-							if(numqt == 6) break;
+							if(numqt == 8) break;
 							}
 						s++;
 						}
 	
-					if(numqt == 6)
+					if(numqt == 8)
 						{
-						if(strstr(qts[3]+1, "topModule=\"1\""))
+						if(strstr(qts[5]+2, "topModule=\"1\""))
 							{
-							numqt = 4;
+							numqt = 6;
 							tm = is_verilator_sim;
 							}
 						}
 
-					if(numqt == 4)
+					if(numqt == 6)
 						{
 						char *fl = qts[0] + 1;
-						char *nam = qts[2] + 1;
-						qts[1][0] = qts[3][0] = 0;
+						char *nam = qts[4] + 1;
+						qts[3][0] = qts[5][0] = 0;
 	
 						mId.push(nam);
 
